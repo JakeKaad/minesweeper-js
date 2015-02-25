@@ -1,0 +1,36 @@
+board = [
+  [cell, cell, cell, cell, cell,],
+  [cell, cell, cell, cell, cell,],
+  [cell, cell, cell, cell, cell,],
+  [cell, cell, cell, cell, cell,],
+  [cell, cell, cell, cell, cell,],
+]
+
+board[0][0]
+
+cell: {bomb: t/f, neighborBombs: 1-8, flag:t/f, display: bomb, cell with neighbor bombs, cell with no neighbor bombs}
+
+
+
+boardsController
+boardsFactory
+  board []
+  cells []
+  plantBombs
+    10% of cells are bombs
+  createBoard(10, 10)
+    10 times do
+      row = []
+      10 times do
+       row.push(Object.create cell)
+      end
+    end
+  neighbors
+    returns all 8 neighbors in an array
+  checkNeighborsForBombs(neighbors)
+    return number of bombs that neighbors
+
+
+cellsController
+cellsFactory
+  createCell
