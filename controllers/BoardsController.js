@@ -1,8 +1,8 @@
-mineSweeper.controller('BoardsCtrl', function BoardsCtrl($scope, BoardsFactory) {
+mineSweeper.controller('BoardsCtrl', function BoardsCtrl($scope, CellsFactory, BoardsFactory) {
   $scope.BoardsFactory = BoardsFactory;
 
   $scope.initializeGame = function(rows, columns) {
-    $scope.game = {};
-    BoardsFactory.
-  }
+  
+    BoardsFactory.createBoard(rows, columns);
+  };
 });

@@ -4,7 +4,11 @@
     <script src="lib/angular.js"></script>
     <script src="lib/angular-ui-router.js"></script>
     <script src="app.js"></script>
-
+    <script src="controllers/BoardsController.js"></script>
+    <script src="controllers/CellsController.js"></script>
+    <script src="services/BoardsFactory.js"></script>
+    <script src="services/CellsFactory.js"></script>
+    <script src="services/UtilitiesFactory.js"></script>
     <!-- <link rel="stylesheet" href="css/bootstrap.css"> -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="css/styles.css">
@@ -13,7 +17,6 @@
   <body>
     <div class="container">
       <h1>Minesweeper</h1>
-      <a class="btn btn-danger" ui-sref="newGame">New game</a>
       <div ui-view></div>
     </div>
   </body>

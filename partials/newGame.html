@@ -1,5 +1,9 @@
-<form ng-submit="initializeBoard()">
+<form ng-submit="initializeGame(rows, columns)" class="form-inline">
   <div class="form-group">
-
+    <label>Rows</label>
+    <input class="form-control" type="number" min="10" max="10" ng-model="rows">
+    <label>Columns</label>
+    <input class="form-control" type="number" min="10" max="10" ng-model="columns">
   </div>
+  <button type="submit" class="btn">Create Game</button>
 </form>
