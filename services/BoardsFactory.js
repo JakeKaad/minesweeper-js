@@ -19,11 +19,12 @@ mineSweeper.factory('BoardsFactory', function BoardsFactory(CellsFactory, Utilit
       }
       factory.board.push(row);
     }
-
+    CellsFactory.initializeCells();
   };
 
 
   factory.assignBomb = function() {
+    createBombArray();
     factory.board.forEach(function(row) {
       factory.board.forEach(function(cell){
         if (factory.bombIds.indexOf(cell.id)) {
@@ -35,22 +36,31 @@ mineSweeper.factory('BoardsFactory', function BoardsFactory(CellsFactory, Utilit
 
   factory.clickCell = function(cellId) {
     var cell = UtilitiesFactory.findById(factory.cells, cellId);
-    // Stopped Here
-    checkForBomb(cell);
     displayCell(cell);
+    if (cell.bomb) {
+      return factory.finishGame();
+    }
     if (cell.neighborBombs === 0)
       cell.neighbors.forEach(function(neighbor)) {
-        displayCell(neighbor)
+        clickCell(neighbor);
       }
     }
-
   }
+
+  factory.finishGame = function() {
+    factory.cells.forEach(function(cell){
+      if (cell.bomb === true) {
+        displayCell(cell);
+      }
+      factory.gameOver = true;
+    })
+  };
 
   var displayCell = function(cell) {
     cell.revealed = true;
   }
 
-  var bombArray = function() {
+  var createBombArray = function() {
     var numberOfBombs = Math.floor(factory.cellCount / 10);
     factory.bombIds = [];
     while (factory.bombIds.length < numberOfBombs) {

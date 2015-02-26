@@ -9,34 +9,38 @@ mineSweeper.factory('CellsFactory', function CellsFactory(BoardsFactory) {
     return cell;
   };
 
-  factory.findNeighbors = function() {
-    BoardsFactory.board.forEach(function(row) {
-      BoardsFactory.board.forEach(function(col) {
+
+  factory.initializeCells = function() {
+    BoardsFactory.rows.forEach(function(row) {
+      BoardsFactory.columns.forEach(function(col) {
         var cell = BoardsFactory.board[row][col]
-        cell.neighbors = [];
-        cell.neighbors.push(BoardsFactory.board[row-1][col-1]);
-        cell.neighbors.push(BoardsFactory.board[row-1][col]);
-        cell.neighbors.push(BoardsFactory.board[row-1][col+1]);
-        cell.neighbors.push(BoardsFactory.board[row][col-1]);
-        cell.neighbors.push(BoardsFactory.board[row][col+1]);
-        cell.neighbors.push(BoardsFactory.board[row+1][col-1]);
-        cell.neighbors.push(BoardsFactory.board[row+1][col]);
-        cell.neighbors.push(BoardsFactory.board[row+1][col+1]);
-        for (var i = 0; i < cell.neighbors.length; i++) {
-          if (cell.neighbors[i] === undefined) {
-            cell.neighbors.splice(i, 1);
-          }
-        }
-        cell.neighbors
+        cell.findNeighbors();
+        cell.setNeighborBomb();
+        cell.setDisplay();
       });
     });
+  };
 
+  factory.Cell.findNeighbors = function() {
+    this.neighbors = [];
+    this.neighbors.push(BoardsFactory.board[row-1][col-1]);
+    this.neighbors.push(BoardsFactory.board[row-1][col]);
+    this.neighbors.push(BoardsFactory.board[row-1][col+1]);
+    this.neighbors.push(BoardsFactory.board[row][col-1]);
+    this.neighbors.push(BoardsFactory.board[row][col+1]);
+    this.neighbors.push(BoardsFactory.board[row+1][col-1]);
+    this.neighbors.push(BoardsFactory.board[row+1][col]);
+    this.neighbors.push(BoardsFactory.board[row+1][col+1]);
+    for (var i = 0; i < cell.neighbors.length; i++) {
+      if (cell.neighbors[i] === undefined) {
+        cell.neighbors.splice(i, 1);
+      }
+    }
   };
 
   factory.Cell.setNeighborBomb = function() {
     this.neighborBomb = 0
     this.neighbors.forEach(function(neighbor)) {
-
       if (neighbor.bomb === true) {
         this.neighborBomb += 1
       };

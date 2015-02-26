@@ -9,6 +9,6 @@ mineSweeper.config(function($stateProvider) {
   $stateProvider.state('newGame', {
     url: '/game',
     templateUrl: "partials/newGame.html",
-    controller: 'BoordController'
+    controller: 'BoordsController'
   });
 });
