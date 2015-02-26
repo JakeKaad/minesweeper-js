@@ -1,4 +1,4 @@
-<form ng-submit="initializeGame(rows, columns)" class="form-inline">
+<form ng-submit="initializeGame(rows, columns)" class="form-inline" ng-hide="activeGame">
   <div class="form-group">
     <label>Rows</label>
     <input class="form-control" type="number" min="12" max="12" ng-model="rows" >
@@ -8,17 +8,28 @@
   <button type="submit" class="btn">Create Game</button>
 </form>
 
+<div ng-show="BoardsFactory.gameOver">
+  <h1>You Lose.</h1>
+  <button class="btn btn-danger" ng-click="resetGame()">New Game</button>
+</div>
+
+<div ng-show="BoardsFactory.gameWin">
+  <h1>You Win.</h1>
+  <button class="btn btn-danger" ng-click="resetGame()">New Game</button>
+
+</div>
+
 <div class="board" ng-show="BoardsFactory.cells.length">
   <ul class="list-unstyled list-inline">
     <li ng-repeat="item in BoardsFactory.cells" ng-init="id = item.id" class="col-md-1">
-        <div class="cell well" ng-class="{revealed: item.revealed}"ng-click="BoardsFactory.clickCell(id)" ng-dblclick="item.plantFlag()">
-          <p class="cell-text"ng-show="item.revealed">
-            {{item.display}}
-          </p>
-          <div class='flag' ng-show="item.flag">
-
-          </div>
+      <div class="cell well" ng-class="{revealed: item.revealed, bomb: item.bomb && item.revealed}"ng-dblclick="BoardsFactory.clickCell(id)" ng-click="item.plantFlag()">
+        <p class="cell-text" ng-show="item.revealed">
+          {{item.display}}
+        </p>
+        <div class='flag' ng-show="item.flag">
+          <i class="glyphicon glyphicon-flag cell-text"></i>
         </div>
+      </div>
     </li>
   </ul>
 </div>

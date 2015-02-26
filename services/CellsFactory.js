@@ -7,6 +7,7 @@ mineSweeper.factory('CellsFactory', function CellsFactory() {
     cell.id = id;
     cell.bomb = false;
     cell.revealed = false;
+    cell.flag = false;
     return cell;
   };
 
@@ -22,7 +23,7 @@ mineSweeper.factory('CellsFactory', function CellsFactory() {
 
   factory.Cell.setDisplay = function() {
     if (this.bomb === true) {
-      this.display = "B";
+      this.display = '\u2297';
     } else if (this.neighborBomb === 0) {
       this.display = ""
     } else {
@@ -32,7 +33,7 @@ mineSweeper.factory('CellsFactory', function CellsFactory() {
   };
 
   factory.Cell.plantFlag = function() {
-
+    this.flag = !this.flag;
   }
 
   return factory;

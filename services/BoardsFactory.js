@@ -40,34 +40,33 @@ mineSweeper.factory('BoardsFactory', function BoardsFactory(UtilitiesFactory, Ce
     var cell = UtilitiesFactory.findById(factory.cells, cellId);
     displayCell(cell);
     if (cell.bomb) {
-      return factory.finishGame();
+      return factory.loseGame();
     }
     if (cell.neighborBomb === 0) {
-    var cellsToReveal = [];
+      var cellsToReveal = [];
       cell.neighbors.forEach(function(neighbor) {
         cellsToReveal.push(neighbor)
       });
 
-    while (cellsToReveal.length > 0) {
-      var neighborCell = cellsToReveal[0]
-      displayCell(neighborCell);
+      while (cellsToReveal.length > 0) {
+        var neighborCell = cellsToReveal[0]
+        displayCell(neighborCell);
 
-      if (neighborCell.neighborBomb === 0) {
-        neighborCell.neighbors.forEach(function(neighbor) {
-          if (!neighbor.revealed) {
-            cellsToReveal.push(neighbor);
-          }
-        });
+        if (neighborCell.neighborBomb === 0) {
+          neighborCell.neighbors.forEach(function(neighbor) {
+            if (!neighbor.revealed) {
+              cellsToReveal.push(neighbor);
+            }
+          });
+        }
+
+        cellsToReveal.splice(0, 1);
       }
-    
-      cellsToReveal.splice(0, 1);
     }
-
-
-    }
+    factory.winGame();
   };
 
-  factory.finishGame = function() {
+  factory.loseGame = function() {
     factory.cells.forEach(function(cell){
       if (cell.bomb === true) {
         displayCell(cell);
@@ -75,6 +74,23 @@ mineSweeper.factory('BoardsFactory', function BoardsFactory(UtilitiesFactory, Ce
       factory.gameOver = true;
     });
   };
+
+  factory.winGame = function() {
+    var nonBombCells = [];
+    var revealedCount = 0
+    factory.cells.forEach(function(cell) {
+      if (!cell.bomb) {
+        nonBombCells.push(cell);
+      };
+      if (cell.revealed) {
+        revealedCount += 1
+      }
+    });
+    if (revealedCount === nonBombCells.length) {
+      factory.gameWin = true;
+    }
+
+  }
 
   var displayCell = function(cell) {
     cell.revealed = true;

@@ -12,3 +12,7 @@
 .cell-text {
   font-size: 3em;
 }
+
+.bomb {
+  background: red;
+}
