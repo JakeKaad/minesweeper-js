@@ -1,7 +1,14 @@
-.course {
-  padding: 1em 0 1em 0;
+.cell {
+  position: relative;
+
+  height: 90px;
+  width: 90px;
 }
 
-.selected {
-  background: grey;
+.revealed {
+  background: darkgray;
+}
+
+.cell-text {
+  font-size: 3em;
 }

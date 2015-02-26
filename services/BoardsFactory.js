@@ -42,11 +42,28 @@ mineSweeper.factory('BoardsFactory', function BoardsFactory(UtilitiesFactory, Ce
     if (cell.bomb) {
       return factory.finishGame();
     }
-    if (cell.neighborBombs === 0) {
-      console.log("here")
+    if (cell.neighborBomb === 0) {
+    var cellsToReveal = [];
       cell.neighbors.forEach(function(neighbor) {
-        clickCell(neighbor);
+        cellsToReveal.push(neighbor)
       });
+
+    while (cellsToReveal.length > 0) {
+      var neighborCell = cellsToReveal[0]
+      displayCell(neighborCell);
+
+      if (neighborCell.neighborBomb === 0) {
+        neighborCell.neighbors.forEach(function(neighbor) {
+          if (!neighbor.revealed) {
+            cellsToReveal.push(neighbor);
+          }
+        });
+      }
+    
+      cellsToReveal.splice(0, 1);
+    }
+
+
     }
   };
 

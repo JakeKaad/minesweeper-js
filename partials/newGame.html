@@ -1,9 +1,24 @@
 <form ng-submit="initializeGame(rows, columns)" class="form-inline">
   <div class="form-group">
     <label>Rows</label>
-    <input class="form-control" type="number" min="10" max="10" ng-model="rows">
+    <input class="form-control" type="number" min="12" max="12" ng-model="rows" >
     <label>Columns</label>
-    <input class="form-control" type="number" min="10" max="10" ng-model="columns">
+    <input class="form-control" type="number" min="12" max="12" ng-model="columns">
   </div>
   <button type="submit" class="btn">Create Game</button>
 </form>
+
+<div class="board" ng-show="BoardsFactory.cells.length">
+  <ul class="list-unstyled list-inline">
+    <li ng-repeat="item in BoardsFactory.cells" ng-init="id = item.id" class="col-md-1">
+        <div class="cell well" ng-class="{revealed: item.revealed}"ng-click="BoardsFactory.clickCell(id)" ng-dblclick="item.plantFlag()">
+          <p class="cell-text"ng-show="item.revealed">
+            {{item.display}}
+          </p>
+          <div class='flag' ng-show="item.flag">
+
+          </div>
+        </div>
+    </li>
+  </ul>
+</div>
