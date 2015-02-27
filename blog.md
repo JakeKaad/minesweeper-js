@@ -13,7 +13,6 @@
 
 <p>Using ng-click and ng-show to toggle something on and off is a really nice way to add quick, high powered functionality to your app. All you need to do is have a boolean resave itself as the opposite of what it is when you click the function.  For our restaurant finder app, we were able to use this toggle to also perform other functionality </p>
 
-		<code>
 				/index.html
 			"checkbox" ng-click="clearPriceForm(price = !price)"> 
 
@@ -24,8 +23,7 @@
 		    <option value="$$$$">$$$$</option>
 		    <option value="$$$$$">$$$$$</option>
 		  </select>
-		</code>
-		<code>
+		
 		  /RestaurantsController.js
 
 		$scope.clearPriceForm = function(price) {
@@ -34,7 +32,7 @@
 
 		  }
 		};
-		</code>
+
 
 
 <p> Here, we had our ng click serve two purposes.  It turned the price variable from true to false.  The div will hidden when price returns true.  This probably would have been better if we wrote it as ng-show="price".  Also, we passed  used this toggle to  pass a boolean to our ClearPriceForm function.  This way, when we hide our checkbox in our search form, the value is reset to null.  We used this same kind of method on each of our search queries, so users would be able to have a customizable search engine.</p>
@@ -45,7 +43,7 @@ Ng-class, I think, might be the most important ng-directive I learned this week 
 
 Here is the first time I really got to use this this week ( Thanks to Tina for making sense of this for me ).  
 
-		<code>
+		
 			 <nav class="navbar navbar-default">
 		    <div class="container">
 		      <ul class="nav navbar-nav">
@@ -54,7 +52,7 @@ Here is the first time I really got to use this this week ( Thanks to Tina for m
 		      </ul>
 		    </div>
 		  </nav>
-		</code>
+		
 
 <p> Here we are using a bootstrap navbar.  These are pretty cool.  You can assign them a link, and then you just have to figure out some way to dynamically add the bootstrap class 'active' to it to display to the user what tab they are currently looking at.  Luckily, angular makse this very easy!</p>
 
@@ -93,10 +91,10 @@ Here is the first time I really got to use this this week ( Thanks to Tina for m
 
 <p> Now, if you look closely.  This is actually a cell.id (or in our ng-repeats case, an item.id).  We tried: </p>
 
-<code>
+
 		ng-dblclick="BoardsFactory.clickCell(item.id)"
 		ng-dblclick="BoardsFactory.clickCell({{item.id}})" (which, curiously enough, when we inspected the element actually had the correct id in the html)
 		ng-dblclick="BoardsFactory.clickCell({{this.id}})"
-</code>
+
 
 <p> Luke and I almost gave up here.  It was very frustrating, I remember pounding my head against the desk a little bit in frustration. But, we perservered and went back to the Angular API.  We found the directive ng-init.  It was designed specifically for this purpose.  You put it in the same line as your ng-repeaat, and you can assign a variable from the items you are reapeating.  So we were able to call our factory method using this argument.</p>
