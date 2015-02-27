@@ -14,8 +14,8 @@
 <p>Using ng-click and ng-show to toggle something on and off is a really nice way to add quick, high powered functionality to your app. All you need to do is have a boolean resave itself as the opposite of what it is when you click the function.  For our restaurant finder app, we were able to use this toggle to also perform other functionality </p>
 
 <code>
-		/index.html
-	<!-- <input type= -->"checkbox" ng-click="clearPriceForm(price = !price)"> 
+		<!-- /index.html
+	"checkbox" ng-click="clearPriceForm(price = !price)"> 
 
   <select ng-model="search.priceRange" class="form-control" placeholder="$"  ng-hide="!price"/>
     <option value="$">$</option>
@@ -33,7 +33,7 @@ $scope.clearPriceForm = function(price) {
     delete $scope.search.priceRange;
 
   }
-};
+}; -->
 </code>
 
 
@@ -45,7 +45,7 @@ Ng-class, I think, might be the most important ng-directive I learned this week 
 
 Here is the first time I really got to use this this week ( Thanks to Tina for making sense of this for me ).  
 
-<code>
+<!-- <code>
 	 <nav class="navbar navbar-default">
     <div class="container">
       <ul class="nav navbar-nav">
@@ -54,7 +54,7 @@ Here is the first time I really got to use this this week ( Thanks to Tina for m
       </ul>
     </div>
   </nav>
-</code>
+</code> -->
 
 <p> Here we are using a bootstrap navbar.  These are pretty cool.  You can assign them a link, and then you just have to figure out some way to dynamically add the bootstrap class 'active' to it to display to the user what tab they are currently looking at.  Luckily, angular makse this very easy!</p>
 
@@ -63,7 +63,7 @@ Here is the first time I really got to use this this week ( Thanks to Tina for m
 <p>The directive ng-class takes an object as an argument.  The keys in this object are the name of the class, and the values are a boolean expression.  When it is true, the object has this class, and when it is false it doesn't.  Simple enough right? </p>
 
 <code>
-
+<!-- 
 <div class="board" ng-show="BoardsFactory.cells.length">
   <ul class="list-unstyled list-inline">
     <li ng-repeat="item in BoardsFactory.cells" ng-init="id = item.id" class="col-md-1">
@@ -77,7 +77,7 @@ Here is the first time I really got to use this this week ( Thanks to Tina for m
       </div>
     </li>
   </ul>
-</div>
+</div> -->
 
 </code>
 
@@ -94,8 +94,8 @@ Here is the first time I really got to use this this week ( Thanks to Tina for m
 <p> Now, if you look closely.  This is actually a cell.id (or in our ng-repeats case, an item.id).  We tried: </p>
 
 <code>
-	ng-dblclick="BoardsFactory.clickCell(item.id)"
-	ng-dblclick="BoardsFactory.clickCell({{item.id}})" (which, curiously enough, when we inspected the element actually had the correct id in the html)
+	ng-dblclick="BoardsFactory.clickCell(item.id)" <br/>
+	ng-dblclick="BoardsFactory.clickCell({{item.id}})" (which, curiously enough, when we inspected the element actually had the correct id in the html) <br/>
 	ng-dblclick="BoardsFactory.clickCell({{this.id}})"
 </code>
 
